@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PinCode</string>
+
+    <string name="change_pin">Change PIN</string>
+    <string name="reset_pin">Reset PIN</string>
+
+    <string name="create_new_pin">Create new PIN</string>
+    <string name="repeat_new_pin">Repeat new PIN</string>
+    <string name="enter_pin">Enter PIN</string>
+    <string name="enter_old_pin">Enter current PIN</string>
+    <string name="pin_created">PIN was created</string>
+    <string name="pin_changed">PIN was changed</string>
+
+    <string name="wrong_pin">Wrong PIN</string>
+    <string name="no_match">PINs do not match</string>
+</resources>
