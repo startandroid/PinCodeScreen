@@ -74,10 +74,20 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
         setContentView(R.layout.pincode_activity);
         initView();
 
-        Constants.PinCodeMode pinCodeMode = (Constants.PinCodeMode) getIntent().getSerializableExtra(Constants.EXTRA_MODE);
-        App.getApp(this).getComponentsHolder().getActivityComponent(getClass(), new PinCodeActivityModule(pinCodeMode)).inject(this);
+        // extract PIN code screen mode from intent
+        Constants.PinCodeMode pinCodeMode = (Constants.PinCodeMode)
+                getIntent().getSerializableExtra(Constants.EXTRA_MODE);
 
+        // inject activity
+        App.getApp(this)
+                .getComponentsHolder()
+                .getActivityComponent(getClass(), new PinCodeActivityModule(pinCodeMode))
+                .inject(this);
+
+        // attach view to presenter
         presenter.attachView(this);
+
+        // view is ready to work
         presenter.viewIsReady();
     }
 
@@ -93,14 +103,18 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
             presenter.destroy();
             App.getApp(this).getComponentsHolder().releaseActivityComponent(getClass());
         }
-
     }
 
     @Override
     public void showFirst(int labelResId) {
+        // set text to label and show it
         textViewFirstLabel.setText(labelResId);
         textViewFirstLabel.setVisibility(View.VISIBLE);
+
+        // show field
         editTextFirstValue.setVisibility(View.VISIBLE);
+
+        // set textChange listener
         RxTextView.afterTextChangeEvents(editTextFirstValue)
                 .skipInitialValue()
                 .filter(new Predicate<TextViewAfterTextChangeEvent>() {

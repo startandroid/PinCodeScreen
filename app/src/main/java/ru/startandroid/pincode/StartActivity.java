@@ -18,6 +18,7 @@ public class StartActivity extends AppCompatActivity {
 
         String pin = preferences.getPin();
 
+        // check current PIN
         if (TextUtils.isEmpty(pin)) {
             PinCodeActivity.createPinCode(this);
         } else {
